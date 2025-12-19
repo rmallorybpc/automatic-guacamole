@@ -110,6 +110,8 @@ def fetch_issue(repo: str, issue_number: int, token: Optional[str]) -> Tuple[Dic
 
 
 _ISSUE_PATH_RE = re.compile(r"/issues/(?P<num>\d+)\b")
+_ISSUE_HASH_RE = re.compile(r"(?<!\w)#(?P<num>\d+)\b")
+_ISSUE_REPO_HASH_RE = re.compile(r"\b[\w.-]+/[\w.-]+#(?P<num>\d+)\b")
 
 
 def extract_issue_numbers(text: str) -> Set[int]:
@@ -119,7 +121,23 @@ def extract_issue_numbers(text: str) -> Set[int]:
             nums.add(int(m.group("num")))
         except ValueError:
             continue
+    for m in _ISSUE_REPO_HASH_RE.finditer(text or ""):
+        try:
+            nums.add(int(m.group("num")))
+        except ValueError:
+            continue
+    for m in _ISSUE_HASH_RE.finditer(text or ""):
+        try:
+            nums.add(int(m.group("num")))
+        except ValueError:
+            continue
     return nums
+
+
+def _normalize_for_contains_match(s: str) -> str:
+    # Remove punctuation/whitespace differences so we can match "Grammar/Spelling"
+    # against headings like "Grammar / Spelling".
+    return re.sub(r"[^a-z0-9]+", "", (s or "").casefold())
 
 
 def _strip_md_decorations(s: str) -> str:
@@ -148,21 +166,30 @@ def parse_meta_issue_body(body: str) -> Dict[int, str]:
     under each section.
     """
 
-    known_keys = [_normalize_key(c) for c in KNOWN_CATEGORIES]
+    # Tolerant category matcher: ignore punctuation/whitespace differences.
+    categories_by_norm = {_normalize_for_contains_match(c): c for c in KNOWN_CATEGORIES}
 
     current_category: Optional[str] = None
     mapping: Dict[int, str] = {}
 
     for raw_line in (body or "").splitlines():
         line = raw_line.rstrip("\n")
+        # Keep original line for issue URL extraction, but strip markdown for category detection.
         candidate = _strip_md_decorations(line)
 
-        # Heuristic: treat a line as a category marker if, once stripped of markdown
-        # decorations, it matches (or starts with) a known category.
-        key = _normalize_key(candidate)
-        if candidate and any(key == k or key.startswith(k + " ") for k in known_keys):
-            # Preserve exact label as displayed in the body.
-            current_category = candidate
+        cand_norm = _normalize_for_contains_match(candidate)
+        matched_category: Optional[str] = None
+        for norm_key, canonical in categories_by_norm.items():
+            if norm_key and norm_key in cand_norm:
+                matched_category = canonical
+                break
+
+        if matched_category:
+            current_category = matched_category
+            # Important: issue links are often on the same line as the category label.
+            for n in extract_issue_numbers(line):
+                if n not in mapping:
+                    mapping[n] = current_category
             continue
 
         if not current_category:
