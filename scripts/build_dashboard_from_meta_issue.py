@@ -43,6 +43,7 @@ class Feature:
     issue_number: int
     id: str
     title: str
+    state: str
     source_type: str
     product_area: str
     source_url: str
@@ -225,6 +226,7 @@ def build_dashboard(repo: str, meta_issue_number: int, token: Optional[str]) -> 
                     issue_number=n,
                     id=f"microsoft_learn_issue_{n}",
                     title=f"Issue #{n}",
+                    state="unknown",
                     source_type="issue",
                     product_area=category,
                     source_url=f"https://github.com/{repo}/issues/{n}",
@@ -238,12 +240,14 @@ def build_dashboard(repo: str, meta_issue_number: int, token: Optional[str]) -> 
             title = issue.get("title") or f"Issue #{n}"
             html_url = issue.get("html_url") or f"https://github.com/{repo}/issues/{n}"
             created_at = issue.get("created_at") or meta_created_at
+            state = issue.get("state") or "unknown"
 
             features.append(
                 Feature(
                     issue_number=n,
                     id=f"microsoft_learn_issue_{n}",
                     title=title,
+                    state=state,
                     source_type="issue",
                     product_area=category,
                     source_url=html_url,
@@ -266,6 +270,7 @@ def build_dashboard(repo: str, meta_issue_number: int, token: Optional[str]) -> 
                     issue_number=n,
                     id=f"microsoft_learn_issue_{n}",
                     title=f"Issue #{n}",
+                    state="unknown",
                     source_type="issue",
                     product_area=category,
                     source_url=f"https://github.com/{repo}/issues/{n}",
@@ -321,6 +326,7 @@ def build_dashboard(repo: str, meta_issue_number: int, token: Optional[str]) -> 
             {
                 "id": f.id,
                 "title": f.title,
+                "state": f.state,
                 "source_type": f.source_type,
                 "product_area": f.product_area,
                 "source_url": f.source_url,

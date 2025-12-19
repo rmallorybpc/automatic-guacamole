@@ -17,11 +17,18 @@
       table { width: 100%; border-collapse: collapse; }
       th, td { border-bottom: 1px solid #eee; padding: 8px 6px; text-align: left; vertical-align: top; }
       th { font-size: 12px; color: #555; text-transform: uppercase; letter-spacing: .02em; }
+      hr { border: 0; border-top: 1px solid #eee; margin: 6px 0; }
       code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
       pre { background: #f6f8fa; padding: 12px; border-radius: 8px; overflow: auto; }
       .error { color: #b00020; }
       a { color: #0969da; text-decoration: none; }
       a:hover { text-decoration: underline; }
+      details > summary { cursor: pointer; user-select: none; }
+      .sectionHeader { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+      .legend { color: #555; font-size: 13px; white-space: nowrap; }
+      .legendItem { display: inline-flex; align-items: baseline; gap: 6px; margin-left: 10px; }
+      .issueRow { display: flex; align-items: baseline; gap: 8px; margin: 2px 0; }
+      .statusIcon { width: 14px; flex: 0 0 14px; text-align: center; font-size: 12px; line-height: 1; }
     </style>
   </head>
   <body>
@@ -50,6 +57,20 @@
       </div>
     </section>
 
+    <div class="sectionHeader">
+      <h2>Product area breakdown</h2>
+      <div class="legend" aria-label="Status legend">
+        <span class="legendItem"><span class="statusIcon" aria-label="open">◯</span><span>open</span></span>
+        <span class="legendItem"><span class="statusIcon" aria-label="closed">✓</span><span>closed</span></span>
+      </div>
+    </div>
+    <div class="card">
+      <table id="productAreaTable">
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
     <h2>Time series</h2>
     <div class="card">
       <table id="timeSeriesTable">
@@ -66,24 +87,11 @@
       </table>
     </div>
 
-    <h2>Product area breakdown</h2>
-    <div class="card">
-      <table id="productAreaTable">
-        <thead><tr><th>Category</th><th>Count</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-
-    <h2>Features</h2>
-    <div class="card">
-      <table id="featuresTable">
-        <thead><tr><th>Date</th><th>Title</th><th>Category</th><th>Source</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-
     <h2>Raw JSON</h2>
-    <pre id="rawJson">Loading…</pre>
+    <details class="card" id="rawJsonDetails">
+      <summary class="meta">Expand / collapse</summary>
+      <pre id="rawJson">Loading…</pre>
+    </details>
 
     <script>
       const DATA_URL = 'reports/dashboard_issue_223.json';
@@ -114,6 +122,26 @@
         a.rel = 'noopener noreferrer';
         a.textContent = label;
         return a;
+      }
+
+      function statusIcon(state) {
+        const s = String(state || '').toLowerCase();
+        const span = document.createElement('span');
+        span.className = 'statusIcon';
+        if (s === 'closed') {
+          span.textContent = '✓';
+          span.title = 'closed';
+          span.setAttribute('aria-label', 'closed');
+        } else if (s === 'open') {
+          span.textContent = '◯';
+          span.title = 'open';
+          span.setAttribute('aria-label', 'open');
+        } else {
+          span.textContent = '?';
+          span.title = 'unknown';
+          span.setAttribute('aria-label', 'unknown');
+        }
+        return span;
       }
 
       function yyyyMmDd(iso) {
@@ -151,22 +179,91 @@
 
           // Product areas
           {
-            const tbody = clearTbody(document.getElementById('productAreaTable'));
-            const rows = data?.product_area_breakdown?.product_areas || [];
-            for (const r of rows) row(tbody, [r.name, r.count]);
-          }
+            const table = document.getElementById('productAreaTable');
+            const thead = table.querySelector('thead');
+            const tbody = clearTbody(table);
 
-          // Features
-          {
-            const tbody = clearTbody(document.getElementById('featuresTable'));
-            for (const f of features) {
-              row(tbody, [
-                yyyyMmDd(f.date_discovered),
-                link(f.source_url, f.title || f.id),
-                f.product_area || '',
-                f.source_type || '',
-              ]);
+            while (thead.firstChild) thead.removeChild(thead.firstChild);
+
+            const rows = data?.product_area_breakdown?.product_areas || [];
+            const headerTr = document.createElement('tr');
+
+            function normCategory(s) {
+              return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
             }
+
+            const preferredOrder = [
+              'DEPRECATED/POTENTIALLY OUTDATED CONTENT',
+              'SUGGESTED CONTENT UPDATES',
+              'OTHER (SUPPORT/AMBIGUOUS/PROCESS)',
+              'PLACEHOLDERS (TEMPLATE-INCOMPLETE)',
+            ].map(normCategory);
+
+            const rowsByNorm = new Map();
+            for (const r of rows) rowsByNorm.set(normCategory(r.name), r);
+
+            const orderedRows = [];
+            for (const k of preferredOrder) {
+              const r = rowsByNorm.get(k);
+              if (r) orderedRows.push(r);
+            }
+            for (const r of rows) {
+              const k = normCategory(r.name);
+              if (!preferredOrder.includes(k)) orderedRows.push(r);
+            }
+
+            const featuresByArea = new Map();
+            for (const f of features) {
+              const key = normCategory(f.product_area || '');
+              if (!featuresByArea.has(key)) featuresByArea.set(key, []);
+              featuresByArea.get(key).push(f);
+            }
+
+            const dataTr = document.createElement('tr');
+
+            for (const r of orderedRows) {
+              const areaName = String(r.name ?? '');
+              const areaKey = normCategory(areaName);
+
+              const th = document.createElement('th');
+              th.textContent = areaName;
+              headerTr.appendChild(th);
+
+              const td = document.createElement('td');
+
+              const countDiv = document.createElement('div');
+              const strong = document.createElement('strong');
+              strong.textContent = String(r.count ?? 0);
+              countDiv.appendChild(strong);
+              td.appendChild(countDiv);
+
+              const areaFeatures = featuresByArea.get(areaKey) || [];
+              areaFeatures.sort((a, b) => {
+                const da = yyyyMmDd(a.date_discovered);
+                const db = yyyyMmDd(b.date_discovered);
+                if (da < db) return 1;
+                if (da > db) return -1;
+                return String(a.title || a.id).localeCompare(String(b.title || b.id));
+              });
+
+              if (areaFeatures.length) {
+                td.appendChild(document.createElement('hr'));
+                const linksDiv = document.createElement('div');
+                for (const f of areaFeatures) {
+                  const rowDiv = document.createElement('div');
+                  rowDiv.className = 'issueRow';
+                  rowDiv.appendChild(statusIcon(f.state));
+                  rowDiv.appendChild(link(f.source_url, f.title || f.id));
+                  linksDiv.appendChild(rowDiv);
+                }
+                td.appendChild(linksDiv);
+              }
+
+              dataTr.appendChild(td);
+            }
+
+            thead.appendChild(headerTr);
+            tbody.appendChild(dataTr);
           }
 
           text(document.getElementById('rawJson'), JSON.stringify(data, null, 2));
