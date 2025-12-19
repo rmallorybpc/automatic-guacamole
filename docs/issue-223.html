@@ -38,7 +38,15 @@
       <div>
         <h1>Issues Dashboard (Meta Issue #223)</h1>
       </div>
-      <div class="meta" id="generatedAt"></div>
+      <div>
+        <div style="display:flex; align-items:baseline; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
+          <button id="refreshBtn" type="button" style="border:1px solid #ddd; background:#fff; border-radius:8px; padding:6px 10px; font:inherit; cursor:pointer;">
+            Run refresh workflow
+          </button>
+          <div class="meta" id="refreshStatus"></div>
+        </div>
+        <div class="meta" id="generatedAt" style="text-align:right;"></div>
+      </div>
     </header>
 
     <section class="grid">
@@ -311,6 +319,16 @@
         }
       }
 
+      function openRefreshWorkflow() {
+        const repo = 'rmallorybpc/automatic-guacamole';
+        const workflowFile = 'refresh-dashboard.yml';
+        const url = `https://github.com/${repo}/actions/workflows/${workflowFile}`;
+        window.open(url, '_blank', 'noopener,noreferrer');
+        const status = document.getElementById('refreshStatus');
+        if (status) text(status, 'Opened GitHub Actions (requires access)');
+      }
+
+      document.getElementById('refreshBtn')?.addEventListener('click', openRefreshWorkflow);
       load();
     </script>
   </body>

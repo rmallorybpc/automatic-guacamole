@@ -28,6 +28,22 @@ Serve the `docs/` folder and open either page:
 	- `http://localhost:8000/issue-223.html` (preview)
 	- `http://localhost:8000/issues.html` (live)
 
+Note: the dashboard pages are static and only re-render on reload. Static servers
+like `python3 -m http.server` cannot regenerate JSON from the page.
+
+### (Dev) Refresh endpoints
+
+The dashboard pages are safe to host statically; the in-page button opens the
+GitHub Actions workflow (static pages cannot securely run the generator scripts).
+
+For local development, you can still use the dev server which serves `docs/` and
+exposes POST endpoints that run the existing generator scripts:
+
+- `GITHUB_TOKEN=... python3 scripts/dev_dashboard_server.py --port 8000`
+- Open:
+	- `http://127.0.0.1:8000/issue-223.html`
+	- `http://127.0.0.1:8000/issues.html`
+
 ## Issues dashboard (all issues)
 
 This repo can also generate a dashboard from *all* issues in a repo (defaults to
@@ -46,3 +62,12 @@ Optional flags:
 - `--repo` (default `githubpartners/microsoft-learn`)
 - `--state` (`open`, `closed`, `all`; default `all`)
 - `--out` (default `docs/reports/dashboard_all_issues.json`)
+
+## Automated refresh (GitHub Actions)
+
+This repo includes a workflow that regenerates `docs/reports/*.json` and commits
+updates back to `main` on a weekly schedule.
+
+- Workflow: `.github/workflows/refresh-dashboard.yml`
+- Schedule: weekly (Mon 08:00 UTC)
+- Manual run: GitHub → Actions → “Refresh dashboard data” → Run workflow
