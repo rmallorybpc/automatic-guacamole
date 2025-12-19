@@ -1,0 +1,24 @@
+{
+  "generated_at": "2025-12-19T16:00:33+00:00",
+  "summary": {
+    "total_features": 0
+  },
+  "time_series": {
+    "time_series": [],
+    "total": 0
+  },
+  "source_breakdown": {
+    "sources": [
+      {
+        "name": "issue",
+        "count": 0
+      }
+    ]
+  },
+  "product_area_breakdown": {
+    "product_areas": []
+  },
+  "features": [],
+  "content_checks": [],
+  "gaps": []
+}
