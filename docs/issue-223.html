@@ -3,13 +3,34 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Issues Dashboard (Meta Issue #223)</title>
+    <title>GitHub Partners / Microsoft Learn Issues Dashboard (Meta Issue #223)</title>
     <style>
       :root { color-scheme: light; }
       body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; line-height: 1.35; }
       header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
       h1 { margin: 0; font-size: 22px; }
       .meta { color: #555; font-size: 12px; }
+      .toolbar { display:flex; align-items:center; gap:10px; justify-content:flex-end; flex-wrap:wrap; }
+      .btn {
+        border: 1px solid #d0d7de;
+        background: #f6f8fa;
+        color: #24292f;
+        border-radius: 999px;
+        padding: 7px 12px;
+        font: inherit;
+        cursor: pointer;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        user-select: none;
+      }
+      .btn:hover { background: #eef1f4; }
+      .btn:active { background: #e7ebef; }
+      .btn[disabled] { opacity: .55; cursor: not-allowed; }
+      .btnIcon { width: 14px; height: 14px; display:inline-block; }
+      .refreshMeta { display:flex; flex-direction:column; align-items:flex-end; gap:2px; min-width: 220px; }
+      .refreshStatus { min-height: 16px; }
       .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 16px 0 20px; }
       .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin: 12px 0 16px; }
       .card { border: 1px solid #ddd; border-radius: 8px; padding: 10px; }
@@ -31,21 +52,25 @@
       .legendItem { display: inline-flex; align-items: baseline; gap: 6px; margin-left: 10px; }
       .issueRow { display: flex; align-items: baseline; gap: 8px; margin: 2px 0; }
       .statusIcon { width: 14px; flex: 0 0 14px; text-align: center; font-size: 12px; line-height: 1; }
+      .issueRow a { font-size: 13px; }
     </style>
   </head>
   <body>
     <header>
       <div>
-        <h1>Issues Dashboard (Meta Issue #223)</h1>
+        <h1>GitHub Partners / Microsoft Learn Issues Dashboard (Meta Issue #223)</h1>
       </div>
       <div>
-        <div style="display:flex; align-items:baseline; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
-          <button id="refreshBtn" type="button" style="border:1px solid #ddd; background:#fff; border-radius:8px; padding:6px 10px; font:inherit; cursor:pointer;">
-            Run refresh workflow
+        <div class="toolbar" aria-label="Dashboard refresh controls">
+          <button id="refreshBtn" type="button" class="btn">
+            <span class="btnIcon" aria-hidden="true">⟳</span>
+            <span>Refresh dashboard</span>
           </button>
-          <div class="meta" id="refreshStatus"></div>
+          <div class="refreshMeta">
+            <div class="meta refreshStatus" id="refreshStatus"></div>
+            <div class="meta" id="generatedAt"></div>
+          </div>
         </div>
-        <div class="meta" id="generatedAt" style="text-align:right;"></div>
       </div>
     </header>
 
@@ -177,6 +202,38 @@
         return span;
       }
 
+      function fmtLocal(iso) {
+        if (!iso) return '—';
+        const d = new Date(String(iso));
+        const t = d.getTime();
+        if (!Number.isFinite(t)) return String(iso);
+        // Example: 2025-12-19 10:22:11
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+        const hh = String(d.getHours()).padStart(2, '0');
+        const mi = String(d.getMinutes()).padStart(2, '0');
+        const ss = String(d.getSeconds()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd} ${hh}:${mi}:${ss}`;
+      }
+
+      function fmtRelativeFromNow(iso) {
+        const t = msSinceEpoch(iso);
+        if (t == null) return null;
+        const deltaMs = Date.now() - t;
+        if (!Number.isFinite(deltaMs)) return null;
+        if (deltaMs < 0) return 'in the future';
+        const sec = Math.floor(deltaMs / 1000);
+        if (sec < 10) return 'just now';
+        if (sec < 60) return `${sec}s ago`;
+        const min = Math.floor(sec / 60);
+        if (min < 60) return `${min}m ago`;
+        const hr = Math.floor(min / 60);
+        if (hr < 48) return `${hr}h ago`;
+        const day = Math.floor(hr / 24);
+        return `${day}d ago`;
+      }
+
       function yyyyMmDd(iso) {
         if (!iso) return '';
         return String(iso).slice(0, 10);
@@ -188,7 +245,12 @@
           if (!resp.ok) throw new Error(`Failed to load ${DATA_URL}: ${resp.status}`);
           const data = await resp.json();
 
-          text(document.getElementById('generatedAt'), `generated_at: ${data.generated_at || '—'}`);
+          {
+            const iso = data.generated_at || null;
+            const rel = fmtRelativeFromNow(iso);
+            const abs = fmtLocal(iso);
+            text(document.getElementById('generatedAt'), rel ? `Last updated ${rel} • ${abs}` : `Last updated • ${abs}`);
+          }
           text(document.getElementById('totalFeatures'), data?.summary?.total_features ?? '—');
 
           const features = Array.isArray(data.features) ? data.features : [];
@@ -319,16 +381,41 @@
         }
       }
 
-      function openRefreshWorkflow() {
+      async function refreshDashboard() {
+        const btn = document.getElementById('refreshBtn');
+        const status = document.getElementById('refreshStatus');
+        const setStatus = (s) => { if (status) text(status, s); };
+
+        if (btn) btn.disabled = true;
+        setStatus('Refreshing…');
+
+        // If served via `scripts/dev_dashboard_server.py`, we can refresh in-place.
+        try {
+          const resp = await fetch('/__refresh_both', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({}),
+          });
+          if (!resp.ok) throw new Error(`refresh failed: ${resp.status}`);
+          const payload = await resp.json();
+          if (!payload?.ok) throw new Error('refresh failed');
+          setStatus('Refresh complete');
+          await load();
+          return;
+        } catch (e) {
+          // Fall back to opening GitHub Actions when running from static hosting.
+        } finally {
+          if (btn) btn.disabled = false;
+        }
+
         const repo = 'rmallorybpc/automatic-guacamole';
         const workflowFile = 'refresh-dashboard.yml';
         const url = `https://github.com/${repo}/actions/workflows/${workflowFile}`;
         window.open(url, '_blank', 'noopener,noreferrer');
-        const status = document.getElementById('refreshStatus');
-        if (status) text(status, 'Opened GitHub Actions (requires access)');
+        setStatus('Opened GitHub Actions (requires access)');
       }
 
-      document.getElementById('refreshBtn')?.addEventListener('click', openRefreshWorkflow);
+      document.getElementById('refreshBtn')?.addEventListener('click', refreshDashboard);
       load();
     </script>
   </body>
