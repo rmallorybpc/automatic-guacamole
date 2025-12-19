@@ -53,6 +53,7 @@
       .issueRow { display: flex; align-items: baseline; gap: 8px; margin: 2px 0; }
       .statusIcon { width: 14px; flex: 0 0 14px; text-align: center; font-size: 12px; line-height: 1; }
       .issueRow a { font-size: 13px; }
+      .issueMonth { font-size: 13px; }
     </style>
   </head>
   <body>
@@ -117,6 +118,16 @@
       <table id="productAreaTable">
         <thead></thead>
         <tbody></tbody>
+      </table>
+    </div>
+
+    <h2>Monthly Issue Report</h2>
+    <div class="card">
+      <table id="monthlyReportTable">
+        <thead><tr><th>Month</th><th>Links</th></tr></thead>
+        <tbody>
+          <tr><td colspan="2" class="meta">Loading…</td></tr>
+        </tbody>
       </table>
     </div>
 
@@ -236,6 +247,54 @@
         return `${day}d ago`;
       }
 
+      function yyyyMm(iso) {
+        if (!iso) return '—';
+        const s = String(iso);
+        // generated_at is ISO; YYYY-MM is sufficient for month labeling.
+        return s.length >= 7 ? s.slice(0, 7) : s;
+      }
+
+      function isMonthlyIssueReportFeature(f) {
+        const t = String(f?.title || '');
+        return t.includes('Monthly Issue Report');
+      }
+
+      function renderMonthlyReport(data, features) {
+        const table = document.getElementById('monthlyReportTable');
+        if (!table) return;
+
+        const tbody = clearTbody(table);
+
+        const monthlyFeatures = (Array.isArray(features) ? features : []).filter(isMonthlyIssueReportFeature);
+        if (!monthlyFeatures.length) {
+          row(tbody, ['—', 'No Monthly Issue Report issues found']);
+          return;
+        }
+
+        monthlyFeatures.sort((a, b) => {
+          const da = yyyyMmDd(a.date_discovered);
+          const db = yyyyMmDd(b.date_discovered);
+          if (da < db) return 1;
+          if (da > db) return -1;
+          return String(a.title || a.id).localeCompare(String(b.title || b.id));
+        });
+
+        for (const f of monthlyFeatures) {
+          const m = yyyyMm(f.date_discovered || data?.generated_at);
+
+          const monthSpan = document.createElement('span');
+          monthSpan.className = 'issueMonth';
+          monthSpan.textContent = m;
+
+          const rowDiv = document.createElement('div');
+          rowDiv.className = 'issueRow';
+          rowDiv.appendChild(statusIcon(f.state));
+          rowDiv.appendChild(link(f.source_url, f.title || f.id));
+
+          row(tbody, [monthSpan, rowDiv]);
+        }
+      }
+
       async function load() {
         try {
           const resp = await fetch(DATA_URL, { cache: 'no-store' });
@@ -280,6 +339,9 @@
             for (const r of ts) row(tbody, [r.date, r.count, r.cumulative]);
           }
 
+          // Monthly report links
+          renderMonthlyReport(data, features);
+
           // Product areas
           {
             const table = document.getElementById('productAreaTable');
@@ -319,6 +381,7 @@
 
             const featuresByArea = new Map();
             for (const f of features) {
+              if (isMonthlyIssueReportFeature(f)) continue;
               const key = normCategory(f.product_area || '');
               if (!featuresByArea.has(key)) featuresByArea.set(key, []);
               featuresByArea.get(key).push(f);
@@ -377,6 +440,12 @@
           const pre = document.getElementById('rawJson');
           pre.classList.add('error');
           pre.textContent = String(err);
+
+          const table = document.getElementById('monthlyReportTable');
+          if (table) {
+            const tbody = clearTbody(table);
+            row(tbody, ['—', String(err)]);
+          }
         }
       }
 
