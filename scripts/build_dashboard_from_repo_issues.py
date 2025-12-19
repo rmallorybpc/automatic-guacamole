@@ -58,6 +58,7 @@ class Feature:
     product_area: str
     source_url: str
     date_discovered: str
+    closed_at: Optional[str]
 
 
 def _iso_now_utc() -> str:
@@ -278,6 +279,7 @@ def build_dashboard(*, repo: str, state: str, token: Optional[str]) -> Dict[str,
         title = it.get("title") or f"Issue #{n}"
         html_url = it.get("html_url") or f"https://github.com/{repo}/issues/{n}"
         created_at = it.get("created_at") or _iso_now_utc()
+        closed_at = it.get("closed_at") or None
         issue_state = it.get("state") or "unknown"
         body = it.get("body") or ""
         labels_raw = it.get("labels") or []
@@ -302,6 +304,7 @@ def build_dashboard(*, repo: str, state: str, token: Optional[str]) -> Dict[str,
                 product_area=product_area,
                 source_url=html_url,
                 date_discovered=created_at,
+                closed_at=closed_at,
             )
         )
 
@@ -356,6 +359,7 @@ def build_dashboard(*, repo: str, state: str, token: Optional[str]) -> Dict[str,
                 "product_area": f.product_area,
                 "source_url": f.source_url,
                 "date_discovered": f.date_discovered,
+                "closed_at": f.closed_at,
             }
             for f in features
         ],

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-19T16:50:05+00:00",
+  "generated_at": "2025-12-19T16:57:21+00:00",
   "summary": {
     "total_features": 118
   },
@@ -442,7 +442,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/19",
-      "date_discovered": "2022-08-17T18:02:45Z"
+      "date_discovered": "2022-08-17T18:02:45Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_20",
@@ -451,7 +452,8 @@
       "source_type": "issue",
       "product_area": "Deprecated/Potentially Outdated Content",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/20",
-      "date_discovered": "2022-08-17T18:04:43Z"
+      "date_discovered": "2022-08-17T18:04:43Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_21",
@@ -460,7 +462,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/21",
-      "date_discovered": "2022-08-17T18:07:55Z"
+      "date_discovered": "2022-08-17T18:07:55Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_22",
@@ -469,7 +472,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/22",
-      "date_discovered": "2022-08-17T18:09:24Z"
+      "date_discovered": "2022-08-17T18:09:24Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_23",
@@ -478,7 +482,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/23",
-      "date_discovered": "2022-08-17T18:13:01Z"
+      "date_discovered": "2022-08-17T18:13:01Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_24",
@@ -487,7 +492,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/24",
-      "date_discovered": "2022-08-17T18:15:08Z"
+      "date_discovered": "2022-08-17T18:15:08Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_25",
@@ -496,7 +502,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/25",
-      "date_discovered": "2022-08-17T18:17:22Z"
+      "date_discovered": "2022-08-17T18:17:22Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_26",
@@ -505,7 +512,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/26",
-      "date_discovered": "2022-08-17T18:18:31Z"
+      "date_discovered": "2022-08-17T18:18:31Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_27",
@@ -514,7 +522,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/27",
-      "date_discovered": "2022-08-17T18:19:40Z"
+      "date_discovered": "2022-08-17T18:19:40Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_28",
@@ -523,7 +532,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/28",
-      "date_discovered": "2022-08-17T18:38:47Z"
+      "date_discovered": "2022-08-17T18:38:47Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_35",
@@ -532,7 +542,8 @@
       "source_type": "issue",
       "product_area": "Suggested Content Updates",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/35",
-      "date_discovered": "2022-09-19T17:47:21Z"
+      "date_discovered": "2022-09-19T17:47:21Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_36",
@@ -541,7 +552,8 @@
       "source_type": "issue",
       "product_area": "Placeholders (Template-Incomplete)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/36",
-      "date_discovered": "2022-09-20T19:15:19Z"
+      "date_discovered": "2022-09-20T19:15:19Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_37",
@@ -550,7 +562,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/37",
-      "date_discovered": "2022-09-20T19:29:44Z"
+      "date_discovered": "2022-09-20T19:29:44Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_38",
@@ -559,7 +572,8 @@
       "source_type": "issue",
       "product_area": "Placeholders (Template-Incomplete)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/38",
-      "date_discovered": "2022-09-20T19:38:23Z"
+      "date_discovered": "2022-09-20T19:38:23Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_39",
@@ -568,7 +582,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/39",
-      "date_discovered": "2022-09-20T20:43:13Z"
+      "date_discovered": "2022-09-20T20:43:13Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_40",
@@ -577,7 +592,8 @@
       "source_type": "issue",
       "product_area": "Suggested Content Updates",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/40",
-      "date_discovered": "2022-09-20T21:05:25Z"
+      "date_discovered": "2022-09-20T21:05:25Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_51",
@@ -586,7 +602,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/51",
-      "date_discovered": "2022-10-10T22:45:20Z"
+      "date_discovered": "2022-10-10T22:45:20Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_56",
@@ -595,7 +612,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/56",
-      "date_discovered": "2023-01-04T22:02:01Z"
+      "date_discovered": "2023-01-04T22:02:01Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_57",
@@ -604,7 +622,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/57",
-      "date_discovered": "2023-01-04T22:03:28Z"
+      "date_discovered": "2023-01-04T22:03:28Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_60",
@@ -613,7 +632,8 @@
       "source_type": "issue",
       "product_area": "Grammar/Spelling",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/60",
-      "date_discovered": "2023-02-03T19:53:44Z"
+      "date_discovered": "2023-02-03T19:53:44Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_118",
@@ -622,7 +642,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/118",
-      "date_discovered": "2024-01-19T01:49:11Z"
+      "date_discovered": "2024-01-19T01:49:11Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_119",
@@ -631,7 +652,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/119",
-      "date_discovered": "2024-01-30T14:20:40Z"
+      "date_discovered": "2024-01-30T14:20:40Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_120",
@@ -640,7 +662,8 @@
       "source_type": "issue",
       "product_area": "Suggested Content Updates",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/120",
-      "date_discovered": "2024-01-30T18:35:56Z"
+      "date_discovered": "2024-01-30T18:35:56Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_121",
@@ -649,7 +672,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/121",
-      "date_discovered": "2024-02-05T19:40:49Z"
+      "date_discovered": "2024-02-05T19:40:49Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_122",
@@ -658,7 +682,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/122",
-      "date_discovered": "2024-03-22T12:17:11Z"
+      "date_discovered": "2024-03-22T12:17:11Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_123",
@@ -667,7 +692,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/123",
-      "date_discovered": "2024-03-28T22:59:06Z"
+      "date_discovered": "2024-03-28T22:59:06Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_124",
@@ -676,7 +702,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/124",
-      "date_discovered": "2024-03-28T23:10:40Z"
+      "date_discovered": "2024-03-28T23:10:40Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_125",
@@ -685,7 +712,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/125",
-      "date_discovered": "2024-04-01T06:33:00Z"
+      "date_discovered": "2024-04-01T06:33:00Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_126",
@@ -694,7 +722,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/126",
-      "date_discovered": "2024-04-10T14:09:11Z"
+      "date_discovered": "2024-04-10T14:09:11Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_129",
@@ -703,7 +732,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/129",
-      "date_discovered": "2024-04-15T07:15:13Z"
+      "date_discovered": "2024-04-15T07:15:13Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_130",
@@ -712,7 +742,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/130",
-      "date_discovered": "2024-04-19T23:08:33Z"
+      "date_discovered": "2024-04-19T23:08:33Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_131",
@@ -721,7 +752,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/131",
-      "date_discovered": "2024-04-30T05:47:24Z"
+      "date_discovered": "2024-04-30T05:47:24Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_133",
@@ -730,7 +762,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/133",
-      "date_discovered": "2024-05-06T18:12:34Z"
+      "date_discovered": "2024-05-06T18:12:34Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_134",
@@ -739,7 +772,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/134",
-      "date_discovered": "2024-05-12T16:57:00Z"
+      "date_discovered": "2024-05-12T16:57:00Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_135",
@@ -748,7 +782,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/135",
-      "date_discovered": "2024-05-28T19:33:23Z"
+      "date_discovered": "2024-05-28T19:33:23Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_136",
@@ -757,7 +792,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/136",
-      "date_discovered": "2024-05-28T19:41:03Z"
+      "date_discovered": "2024-05-28T19:41:03Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_138",
@@ -766,7 +802,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/138",
-      "date_discovered": "2024-06-08T22:00:19Z"
+      "date_discovered": "2024-06-08T22:00:19Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_139",
@@ -775,7 +812,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/139",
-      "date_discovered": "2024-06-08T22:00:20Z"
+      "date_discovered": "2024-06-08T22:00:20Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_141",
@@ -784,7 +822,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/141",
-      "date_discovered": "2024-06-11T18:57:46Z"
+      "date_discovered": "2024-06-11T18:57:46Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_142",
@@ -793,7 +832,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/142",
-      "date_discovered": "2024-06-13T02:20:01Z"
+      "date_discovered": "2024-06-13T02:20:01Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_143",
@@ -802,7 +842,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/143",
-      "date_discovered": "2024-06-23T14:22:35Z"
+      "date_discovered": "2024-06-23T14:22:35Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_144",
@@ -811,7 +852,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/144",
-      "date_discovered": "2024-06-23T14:39:08Z"
+      "date_discovered": "2024-06-23T14:39:08Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_145",
@@ -820,7 +862,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/145",
-      "date_discovered": "2024-06-23T21:19:49Z"
+      "date_discovered": "2024-06-23T21:19:49Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_146",
@@ -829,7 +872,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/146",
-      "date_discovered": "2024-07-08T16:24:23Z"
+      "date_discovered": "2024-07-08T16:24:23Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_147",
@@ -838,7 +882,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/147",
-      "date_discovered": "2024-07-08T16:31:38Z"
+      "date_discovered": "2024-07-08T16:31:38Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_148",
@@ -847,7 +892,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/148",
-      "date_discovered": "2024-07-10T13:35:42Z"
+      "date_discovered": "2024-07-10T13:35:42Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_149",
@@ -856,7 +902,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/149",
-      "date_discovered": "2024-07-18T12:58:59Z"
+      "date_discovered": "2024-07-18T12:58:59Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_150",
@@ -865,7 +912,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/150",
-      "date_discovered": "2024-07-31T06:48:33Z"
+      "date_discovered": "2024-07-31T06:48:33Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_151",
@@ -874,7 +922,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/151",
-      "date_discovered": "2024-08-07T16:14:21Z"
+      "date_discovered": "2024-08-07T16:14:21Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_153",
@@ -883,7 +932,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/153",
-      "date_discovered": "2024-08-26T01:30:36Z"
+      "date_discovered": "2024-08-26T01:30:36Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_154",
@@ -892,7 +942,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/154",
-      "date_discovered": "2024-08-26T01:43:50Z"
+      "date_discovered": "2024-08-26T01:43:50Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_155",
@@ -901,7 +952,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/155",
-      "date_discovered": "2024-08-26T23:00:56Z"
+      "date_discovered": "2024-08-26T23:00:56Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_156",
@@ -910,7 +962,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/156",
-      "date_discovered": "2024-08-27T01:34:43Z"
+      "date_discovered": "2024-08-27T01:34:43Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_157",
@@ -919,7 +972,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/157",
-      "date_discovered": "2024-08-27T01:38:29Z"
+      "date_discovered": "2024-08-27T01:38:29Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_158",
@@ -928,7 +982,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/158",
-      "date_discovered": "2024-08-27T02:25:55Z"
+      "date_discovered": "2024-08-27T02:25:55Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_159",
@@ -937,7 +992,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/159",
-      "date_discovered": "2024-08-27T02:30:35Z"
+      "date_discovered": "2024-08-27T02:30:35Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_160",
@@ -946,7 +1002,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/160",
-      "date_discovered": "2024-08-27T23:37:42Z"
+      "date_discovered": "2024-08-27T23:37:42Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_161",
@@ -955,7 +1012,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/161",
-      "date_discovered": "2024-08-28T14:13:22Z"
+      "date_discovered": "2024-08-28T14:13:22Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_162",
@@ -964,7 +1022,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/162",
-      "date_discovered": "2024-09-01T11:03:25Z"
+      "date_discovered": "2024-09-01T11:03:25Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_163",
@@ -973,7 +1032,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/163",
-      "date_discovered": "2024-09-02T20:05:19Z"
+      "date_discovered": "2024-09-02T20:05:19Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_164",
@@ -982,7 +1042,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/164",
-      "date_discovered": "2024-09-03T00:23:41Z"
+      "date_discovered": "2024-09-03T00:23:41Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_165",
@@ -991,7 +1052,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/165",
-      "date_discovered": "2024-09-04T14:27:11Z"
+      "date_discovered": "2024-09-04T14:27:11Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_166",
@@ -1000,7 +1062,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/166",
-      "date_discovered": "2024-09-05T02:17:54Z"
+      "date_discovered": "2024-09-05T02:17:54Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_167",
@@ -1009,7 +1072,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/167",
-      "date_discovered": "2024-09-11T15:29:39Z"
+      "date_discovered": "2024-09-11T15:29:39Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_168",
@@ -1018,7 +1082,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/168",
-      "date_discovered": "2024-09-14T01:05:31Z"
+      "date_discovered": "2024-09-14T01:05:31Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_169",
@@ -1027,7 +1092,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/169",
-      "date_discovered": "2024-09-15T00:08:57Z"
+      "date_discovered": "2024-09-15T00:08:57Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_170",
@@ -1036,7 +1102,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/170",
-      "date_discovered": "2024-09-16T19:12:11Z"
+      "date_discovered": "2024-09-16T19:12:11Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_171",
@@ -1045,7 +1112,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/171",
-      "date_discovered": "2024-09-17T13:59:33Z"
+      "date_discovered": "2024-09-17T13:59:33Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_172",
@@ -1054,7 +1122,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/172",
-      "date_discovered": "2024-09-21T19:07:57Z"
+      "date_discovered": "2024-09-21T19:07:57Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_173",
@@ -1063,7 +1132,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/173",
-      "date_discovered": "2024-09-22T03:26:57Z"
+      "date_discovered": "2024-09-22T03:26:57Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_174",
@@ -1072,7 +1142,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/174",
-      "date_discovered": "2024-09-22T20:43:43Z"
+      "date_discovered": "2024-09-22T20:43:43Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_176",
@@ -1081,7 +1152,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/176",
-      "date_discovered": "2024-10-02T13:21:28Z"
+      "date_discovered": "2024-10-02T13:21:28Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_177",
@@ -1090,7 +1162,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/177",
-      "date_discovered": "2024-10-02T13:23:10Z"
+      "date_discovered": "2024-10-02T13:23:10Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_178",
@@ -1099,7 +1172,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/178",
-      "date_discovered": "2024-10-02T13:26:11Z"
+      "date_discovered": "2024-10-02T13:26:11Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_179",
@@ -1108,7 +1182,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/179",
-      "date_discovered": "2024-10-02T13:30:08Z"
+      "date_discovered": "2024-10-02T13:30:08Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_180",
@@ -1117,7 +1192,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/180",
-      "date_discovered": "2024-10-02T15:02:53Z"
+      "date_discovered": "2024-10-02T15:02:53Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_181",
@@ -1126,7 +1202,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/181",
-      "date_discovered": "2024-10-02T15:08:36Z"
+      "date_discovered": "2024-10-02T15:08:36Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_182",
@@ -1135,7 +1212,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/182",
-      "date_discovered": "2024-10-03T09:43:18Z"
+      "date_discovered": "2024-10-03T09:43:18Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_183",
@@ -1144,7 +1222,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/183",
-      "date_discovered": "2024-10-16T11:46:05Z"
+      "date_discovered": "2024-10-16T11:46:05Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_184",
@@ -1153,7 +1232,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/184",
-      "date_discovered": "2024-11-11T14:05:34Z"
+      "date_discovered": "2024-11-11T14:05:34Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_185",
@@ -1162,7 +1242,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/185",
-      "date_discovered": "2024-11-12T11:30:25Z"
+      "date_discovered": "2024-11-12T11:30:25Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_187",
@@ -1171,7 +1252,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/187",
-      "date_discovered": "2024-12-10T15:08:10Z"
+      "date_discovered": "2024-12-10T15:08:10Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_188",
@@ -1180,7 +1262,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/188",
-      "date_discovered": "2024-12-30T13:03:21Z"
+      "date_discovered": "2024-12-30T13:03:21Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_189",
@@ -1189,7 +1272,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/189",
-      "date_discovered": "2025-01-10T20:16:37Z"
+      "date_discovered": "2025-01-10T20:16:37Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_191",
@@ -1198,7 +1282,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/191",
-      "date_discovered": "2025-01-25T15:17:52Z"
+      "date_discovered": "2025-01-25T15:17:52Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_192",
@@ -1207,7 +1292,8 @@
       "source_type": "issue",
       "product_area": "Suggested Content Updates",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/192",
-      "date_discovered": "2025-01-27T11:04:58Z"
+      "date_discovered": "2025-01-27T11:04:58Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_193",
@@ -1216,7 +1302,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/193",
-      "date_discovered": "2025-02-13T05:38:47Z"
+      "date_discovered": "2025-02-13T05:38:47Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_194",
@@ -1225,7 +1312,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/194",
-      "date_discovered": "2025-02-13T05:40:37Z"
+      "date_discovered": "2025-02-13T05:40:37Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_195",
@@ -1234,7 +1322,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/195",
-      "date_discovered": "2025-03-05T20:01:42Z"
+      "date_discovered": "2025-03-05T20:01:42Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_196",
@@ -1243,7 +1332,8 @@
       "source_type": "issue",
       "product_area": "Suggested Content Updates",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/196",
-      "date_discovered": "2025-03-10T05:30:10Z"
+      "date_discovered": "2025-03-10T05:30:10Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_197",
@@ -1252,7 +1342,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/197",
-      "date_discovered": "2025-03-14T07:17:52Z"
+      "date_discovered": "2025-03-14T07:17:52Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_198",
@@ -1261,7 +1352,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/198",
-      "date_discovered": "2025-03-15T03:04:23Z"
+      "date_discovered": "2025-03-15T03:04:23Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_199",
@@ -1270,7 +1362,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/199",
-      "date_discovered": "2025-04-16T14:30:19Z"
+      "date_discovered": "2025-04-16T14:30:19Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_200",
@@ -1279,7 +1372,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/200",
-      "date_discovered": "2025-05-13T19:04:42Z"
+      "date_discovered": "2025-05-13T19:04:42Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_201",
@@ -1288,7 +1382,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/201",
-      "date_discovered": "2025-05-24T23:35:47Z"
+      "date_discovered": "2025-05-24T23:35:47Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_202",
@@ -1297,7 +1392,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/202",
-      "date_discovered": "2025-06-07T22:15:42Z"
+      "date_discovered": "2025-06-07T22:15:42Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_203",
@@ -1306,7 +1402,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/203",
-      "date_discovered": "2025-06-20T06:06:31Z"
+      "date_discovered": "2025-06-20T06:06:31Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_204",
@@ -1315,7 +1412,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/204",
-      "date_discovered": "2025-06-27T06:41:10Z"
+      "date_discovered": "2025-06-27T06:41:10Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_205",
@@ -1324,7 +1422,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/205",
-      "date_discovered": "2025-07-06T04:06:35Z"
+      "date_discovered": "2025-07-06T04:06:35Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_206",
@@ -1333,7 +1432,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/206",
-      "date_discovered": "2025-07-18T14:52:52Z"
+      "date_discovered": "2025-07-18T14:52:52Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_207",
@@ -1342,7 +1442,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/207",
-      "date_discovered": "2025-07-19T15:59:21Z"
+      "date_discovered": "2025-07-19T15:59:21Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_208",
@@ -1351,7 +1452,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/208",
-      "date_discovered": "2025-07-29T10:58:55Z"
+      "date_discovered": "2025-07-29T10:58:55Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_209",
@@ -1360,7 +1462,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/209",
-      "date_discovered": "2025-07-30T11:06:59Z"
+      "date_discovered": "2025-07-30T11:06:59Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_210",
@@ -1369,7 +1472,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/210",
-      "date_discovered": "2025-08-03T04:35:12Z"
+      "date_discovered": "2025-08-03T04:35:12Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_211",
@@ -1378,7 +1482,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/211",
-      "date_discovered": "2025-08-05T12:14:59Z"
+      "date_discovered": "2025-08-05T12:14:59Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_212",
@@ -1387,7 +1492,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/212",
-      "date_discovered": "2025-08-14T16:31:33Z"
+      "date_discovered": "2025-08-14T16:31:33Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_214",
@@ -1396,7 +1502,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/214",
-      "date_discovered": "2025-09-28T13:44:08Z"
+      "date_discovered": "2025-09-28T13:44:08Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_217",
@@ -1405,7 +1512,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/217",
-      "date_discovered": "2025-11-04T20:55:51Z"
+      "date_discovered": "2025-11-04T20:55:51Z",
+      "closed_at": "2025-11-21T07:33:02Z"
     },
     {
       "id": "microsoft_learn_issue_218",
@@ -1414,7 +1522,8 @@
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/218",
-      "date_discovered": "2025-11-09T02:48:06Z"
+      "date_discovered": "2025-11-09T02:48:06Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_219",
@@ -1423,7 +1532,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/219",
-      "date_discovered": "2025-11-10T01:52:36Z"
+      "date_discovered": "2025-11-10T01:52:36Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_220",
@@ -1432,7 +1542,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/220",
-      "date_discovered": "2025-11-10T01:52:43Z"
+      "date_discovered": "2025-11-10T01:52:43Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_221",
@@ -1441,7 +1552,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/221",
-      "date_discovered": "2025-11-10T01:52:46Z"
+      "date_discovered": "2025-11-10T01:52:46Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_222",
@@ -1450,7 +1562,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/222",
-      "date_discovered": "2025-11-10T01:52:47Z"
+      "date_discovered": "2025-11-10T01:52:47Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_223",
@@ -1459,7 +1572,8 @@
       "source_type": "issue",
       "product_area": "Grammar/Spelling",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/223",
-      "date_discovered": "2025-11-13T20:33:05Z"
+      "date_discovered": "2025-11-13T20:33:05Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_224",
@@ -1468,7 +1582,8 @@
       "source_type": "issue",
       "product_area": "Placeholders (Template-Incomplete)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/224",
-      "date_discovered": "2025-11-13T20:33:05Z"
+      "date_discovered": "2025-11-13T20:33:05Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_225",
@@ -1477,7 +1592,8 @@
       "source_type": "issue",
       "product_area": "Grammar/Spelling",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/225",
-      "date_discovered": "2025-11-13T20:33:06Z"
+      "date_discovered": "2025-11-13T20:33:06Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_226",
@@ -1486,7 +1602,8 @@
       "source_type": "issue",
       "product_area": "Suggested Content Updates",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/226",
-      "date_discovered": "2025-11-13T20:33:06Z"
+      "date_discovered": "2025-11-13T20:33:06Z",
+      "closed_at": null
     },
     {
       "id": "microsoft_learn_issue_228",
@@ -1495,7 +1612,8 @@
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/228",
-      "date_discovered": "2025-12-08T07:17:50Z"
+      "date_discovered": "2025-12-08T07:17:50Z",
+      "closed_at": null
     }
   ],
   "content_checks": [],

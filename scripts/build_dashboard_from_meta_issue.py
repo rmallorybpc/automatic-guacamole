@@ -48,6 +48,7 @@ class Feature:
     product_area: str
     source_url: str
     date_discovered: str
+    closed_at: Optional[str]
 
 
 def _iso_now_utc() -> str:
@@ -231,6 +232,7 @@ def build_dashboard(repo: str, meta_issue_number: int, token: Optional[str]) -> 
                     product_area=category,
                     source_url=f"https://github.com/{repo}/issues/{n}",
                     date_discovered=meta_created_at,
+                    closed_at=None,
                 )
             )
             continue
@@ -241,6 +243,7 @@ def build_dashboard(repo: str, meta_issue_number: int, token: Optional[str]) -> 
             html_url = issue.get("html_url") or f"https://github.com/{repo}/issues/{n}"
             created_at = issue.get("created_at") or meta_created_at
             state = issue.get("state") or "unknown"
+            closed_at = issue.get("closed_at") or None
 
             features.append(
                 Feature(
@@ -252,6 +255,7 @@ def build_dashboard(repo: str, meta_issue_number: int, token: Optional[str]) -> 
                     product_area=category,
                     source_url=html_url,
                     date_discovered=created_at,
+                    closed_at=closed_at,
                 )
             )
 
@@ -275,6 +279,7 @@ def build_dashboard(repo: str, meta_issue_number: int, token: Optional[str]) -> 
                     product_area=category,
                     source_url=f"https://github.com/{repo}/issues/{n}",
                     date_discovered=meta_created_at,
+                    closed_at=None,
                 )
             )
 
@@ -331,6 +336,7 @@ def build_dashboard(repo: str, meta_issue_number: int, token: Optional[str]) -> 
                 "product_area": f.product_area,
                 "source_url": f.source_url,
                 "date_discovered": f.date_discovered,
+                "closed_at": f.closed_at,
             }
             for f in features
         ],

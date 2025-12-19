@@ -9,11 +9,12 @@
       body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; line-height: 1.35; }
       header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
       h1 { margin: 0; font-size: 22px; }
-      .meta { color: #555; font-size: 13px; }
+      .meta { color: #555; font-size: 12px; }
       .toplinks { margin-top: 6px; }
-      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 16px 0 20px; }
-      .card { border: 1px solid #ddd; border-radius: 8px; padding: 12px; }
-      .kpi { font-size: 28px; font-weight: 650; margin-top: 6px; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin: 12px 0 16px; }
+      .card { border: 1px solid #ddd; border-radius: 8px; padding: 10px; }
+      .kpiCard { padding: 8px; }
+      .kpi { font-size: 16px; font-weight: 650; margin-top: 4px; }
       h2 { margin: 22px 0 10px; font-size: 16px; }
       table { width: 100%; border-collapse: collapse; }
       th, td { border-bottom: 1px solid #eee; padding: 8px 6px; text-align: left; vertical-align: top; }
@@ -36,23 +37,38 @@
     <header>
       <div>
         <h1>Issues Dashboard</h1>
-        <div class="meta">Loads: <code>reports/dashboard_issue_223.json</code></div>
       </div>
       <div class="meta" id="generatedAt"></div>
     </header>
 
     <section class="grid">
-      <div class="card">
+      <div class="card kpiCard">
         <div class="meta">Total features</div>
         <div class="kpi" id="totalFeatures">—</div>
       </div>
-      <div class="card">
+      <div class="card kpiCard">
         <div class="meta">First discovered</div>
         <div class="kpi" id="firstDate">—</div>
       </div>
-      <div class="card">
+      <div class="card kpiCard">
         <div class="meta">Last discovered</div>
         <div class="kpi" id="lastDate">—</div>
+      </div>
+      <div class="card kpiCard">
+        <div class="meta">Opened (last 7 days)</div>
+        <div class="kpi" id="openedLast7">—</div>
+      </div>
+      <div class="card kpiCard">
+        <div class="meta">Closed (last 7 days)</div>
+        <div class="kpi" id="closedLast7">—</div>
+      </div>
+      <div class="card kpiCard">
+        <div class="meta">Opened (last 30 days)</div>
+        <div class="kpi" id="openedLast30">—</div>
+      </div>
+      <div class="card kpiCard">
+        <div class="meta">Closed (last 30 days)</div>
+        <div class="kpi" id="closedLast30">—</div>
       </div>
     </section>
 
@@ -72,22 +88,16 @@
     </div>
 
     <h2>Time series</h2>
-    <div class="card">
+    <details class="card" id="timeSeriesDetails">
+      <summary class="meta">Expand / collapse</summary>
       <table id="timeSeriesTable">
         <thead><tr><th>Date</th><th>Count</th><th>Cumulative</th></tr></thead>
         <tbody></tbody>
       </table>
-    </div>
-
-    <h2>Source breakdown</h2>
-    <div class="card">
-      <table id="sourceTable">
-        <thead><tr><th>Source</th><th>Count</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
+    </details>
 
     <h2>Raw JSON</h2>
+    <div class="meta">Loads: <code>reports/dashboard_issue_223.json</code></div>
     <details class="card" id="rawJsonDetails">
       <summary class="meta">Expand / collapse</summary>
       <pre id="rawJson">Loading…</pre>
@@ -98,6 +108,22 @@
 
       function text(el, value) { el.textContent = value; }
       function yyyyMmDd(iso) { return iso ? String(iso).slice(0, 10) : ''; }
+
+      function msSinceEpoch(iso) {
+        if (!iso) return null;
+        const d = new Date(String(iso));
+        const t = d.getTime();
+        return Number.isFinite(t) ? t : null;
+      }
+
+      function countSinceMs(items, getIso, thresholdMs) {
+        let n = 0;
+        for (const it of items) {
+          const t = msSinceEpoch(getIso(it));
+          if (t != null && t >= thresholdMs) n += 1;
+        }
+        return n;
+      }
 
       function clearTbody(table) {
         const tbody = table.querySelector('tbody');
@@ -159,18 +185,29 @@
           text(document.getElementById('firstDate'), dates[0] || '—');
           text(document.getElementById('lastDate'), dates[dates.length - 1] || '—');
 
+          // Opened / closed counts (relative to generated_at)
+          {
+            const nowMs = msSinceEpoch(data.generated_at) ?? Date.now();
+            const dayMs = 24 * 60 * 60 * 1000;
+            const since7 = nowMs - 7 * dayMs;
+            const since30 = nowMs - 30 * dayMs;
+
+            const opened7 = countSinceMs(features, f => f.date_discovered, since7);
+            const opened30 = countSinceMs(features, f => f.date_discovered, since30);
+            const closed7 = countSinceMs(features, f => f.closed_at, since7);
+            const closed30 = countSinceMs(features, f => f.closed_at, since30);
+
+            text(document.getElementById('openedLast7'), opened7);
+            text(document.getElementById('closedLast7'), closed7);
+            text(document.getElementById('openedLast30'), opened30);
+            text(document.getElementById('closedLast30'), closed30);
+          }
+
           // Time series
           {
             const tbody = clearTbody(document.getElementById('timeSeriesTable'));
             const ts = data?.time_series?.time_series || [];
             for (const r of ts) row(tbody, [r.date, r.count, r.cumulative]);
-          }
-
-          // Source breakdown
-          {
-            const tbody = clearTbody(document.getElementById('sourceTable'));
-            const rows = data?.source_breakdown?.sources || [];
-            for (const r of rows) row(tbody, [r.name, r.count]);
           }
 
           // Product areas
