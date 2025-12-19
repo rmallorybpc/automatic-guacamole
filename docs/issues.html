@@ -61,6 +61,7 @@
       <div class="legend" aria-label="Status legend">
         <span class="legendItem"><span class="statusIcon" aria-label="open">◯</span><span>open</span></span>
         <span class="legendItem"><span class="statusIcon" aria-label="closed">✓</span><span>closed</span></span>
+        <span class="legendItem">Closed issues &gt;30 days hidden</span>
       </div>
     </div>
     <div class="card">
@@ -93,7 +94,7 @@
     </details>
 
     <script>
-      const DATA_URL = 'reports/dashboard_issue_223.json';
+      const DATA_URL = 'reports/dashboard_all_issues.json';
 
       function text(el, value) { el.textContent = value; }
       function yyyyMmDd(iso) { return iso ? String(iso).slice(0, 10) : ''; }
@@ -188,10 +189,12 @@
             }
 
             const preferredOrder = [
+              'MS LEARN MODULE UPDATE REQUEST',
               'DEPRECATED/POTENTIALLY OUTDATED CONTENT',
               'SUGGESTED CONTENT UPDATES',
               'OTHER (SUPPORT/AMBIGUOUS/PROCESS)',
               'PLACEHOLDERS (TEMPLATE-INCOMPLETE)',
+              'GRAMMAR/SPELLING',
             ].map(normCategory);
 
             const rowsByNorm = new Map();
