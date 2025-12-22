@@ -1,7 +1,7 @@
 {
-  "generated_at": "2025-12-19T16:57:21+00:00",
+  "generated_at": "2025-12-22T08:35:10+00:00",
   "summary": {
-    "total_features": 118
+    "total_features": 117
   },
   "time_series": {
     "time_series": [
@@ -371,38 +371,33 @@
         "cumulative": 107
       },
       {
-        "date": "2025-11-04",
+        "date": "2025-11-09",
         "count": 1,
         "cumulative": 108
       },
       {
-        "date": "2025-11-09",
-        "count": 1,
-        "cumulative": 109
-      },
-      {
         "date": "2025-11-10",
         "count": 4,
-        "cumulative": 113
+        "cumulative": 112
       },
       {
         "date": "2025-11-13",
         "count": 4,
-        "cumulative": 117
+        "cumulative": 116
       },
       {
         "date": "2025-12-08",
         "count": 1,
-        "cumulative": 118
+        "cumulative": 117
       }
     ],
-    "total": 118
+    "total": 117
   },
   "source_breakdown": {
     "sources": [
       {
         "name": "issue",
-        "count": 118
+        "count": 117
       }
     ]
   },
@@ -410,7 +405,7 @@
     "product_areas": [
       {
         "name": "MS Learn Module Update Request",
-        "count": 83
+        "count": 82
       },
       {
         "name": "Other (Support/Ambiguous/Process)",
@@ -1504,16 +1499,6 @@
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/214",
       "date_discovered": "2025-09-28T13:44:08Z",
       "closed_at": null
-    },
-    {
-      "id": "microsoft_learn_issue_217",
-      "title": "MS Learn Module Update Request: [REPLACE_WITH_MODULE_TITLE]",
-      "state": "closed",
-      "source_type": "issue",
-      "product_area": "MS Learn Module Update Request",
-      "source_url": "https://github.com/githubpartners/microsoft-learn/issues/217",
-      "date_discovered": "2025-11-04T20:55:51Z",
-      "closed_at": "2025-11-21T07:33:02Z"
     },
     {
       "id": "microsoft_learn_issue_218",
