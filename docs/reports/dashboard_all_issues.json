@@ -1,7 +1,7 @@
 {
-  "generated_at": "2025-12-29T08:36:30+00:00",
+  "generated_at": "2026-01-05T08:38:43+00:00",
   "summary": {
-    "total_features": 118
+    "total_features": 120
   },
   "time_series": {
     "time_series": [
@@ -394,15 +394,25 @@
         "date": "2025-12-28",
         "count": 1,
         "cumulative": 118
+      },
+      {
+        "date": "2025-12-30",
+        "count": 1,
+        "cumulative": 119
+      },
+      {
+        "date": "2025-12-31",
+        "count": 1,
+        "cumulative": 120
       }
     ],
-    "total": 118
+    "total": 120
   },
   "source_breakdown": {
     "sources": [
       {
         "name": "issue",
-        "count": 118
+        "count": 120
       }
     ]
   },
@@ -410,7 +420,7 @@
     "product_areas": [
       {
         "name": "MS Learn Module Update Request",
-        "count": 82
+        "count": 84
       },
       {
         "name": "Other (Support/Ambiguous/Process)",
@@ -1613,6 +1623,26 @@
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/230",
       "date_discovered": "2025-12-28T13:57:59Z",
+      "closed_at": null
+    },
+    {
+      "id": "microsoft_learn_issue_231",
+      "title": "MS Learn Module Update Request: [Contents are repetitive]",
+      "state": "open",
+      "source_type": "issue",
+      "product_area": "MS Learn Module Update Request",
+      "source_url": "https://github.com/githubpartners/microsoft-learn/issues/231",
+      "date_discovered": "2025-12-30T02:43:46Z",
+      "closed_at": null
+    },
+    {
+      "id": "microsoft_learn_issue_232",
+      "title": "MS Learn Module Update Request: [REPLACE_WITH_MODULE_TITLE]",
+      "state": "open",
+      "source_type": "issue",
+      "product_area": "MS Learn Module Update Request",
+      "source_url": "https://github.com/githubpartners/microsoft-learn/issues/232",
+      "date_discovered": "2025-12-31T21:47:49Z",
       "closed_at": null
     }
   ],
