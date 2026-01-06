@@ -124,7 +124,13 @@ class DashboardDevHandler(SimpleHTTPRequestHandler):
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="Serve docs/ and provide dashboard refresh endpoints.")
-    p.add_argument("--bind", default="127.0.0.1", help="Bind address (default: 127.0.0.1)")
+    # Codespaces port forwarding expects the server to listen on 0.0.0.0.
+    default_bind = "0.0.0.0" if (os.environ.get("CODESPACES") == "true" or os.environ.get("CODESPACE_NAME")) else "127.0.0.1"
+    p.add_argument(
+        "--bind",
+        default=default_bind,
+        help=f"Bind address (default: {default_bind}; use 0.0.0.0 for Codespaces port forwarding)",
+    )
     p.add_argument("--port", type=int, default=8000, help="Port (default: 8000)")
     p.add_argument(
         "--docs-dir",
@@ -151,7 +157,8 @@ def main(argv: list[str] | None = None) -> int:
 
     with ThreadingTCPServer((args.bind, args.port), handler) as httpd:
         httpd.refresh_timeout_s = args.refresh_timeout
-        url = f"http://{args.bind}:{args.port}/"
+        host_for_print = "127.0.0.1" if args.bind == "0.0.0.0" else args.bind
+        url = f"http://{host_for_print}:{args.port}/"
         print("Serving dashboard at:")
         print(f"  {url} (redirects to issues.html)")
         print(f"  {url}issues.html")

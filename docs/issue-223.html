@@ -88,6 +88,10 @@
             <span class="btnIcon" aria-hidden="true">⟳</span>
             <span>Refresh dashboard</span>
           </button>
+          <button id="manualStepsBtn" type="button" class="btn" aria-expanded="false" aria-controls="manualStepsSection">
+            <span class="btnIcon" aria-hidden="true">▾</span>
+            <span>Manual steps</span>
+          </button>
           <div class="refreshMeta">
             <div class="meta refreshStatus" id="refreshStatus"></div>
             <div class="meta" id="generatedAt"></div>
@@ -127,6 +131,26 @@
       </div>
     </section>
 
+    <div class="card" id="manualStepsSection" hidden>
+      <h2 style="margin-top: 0;">Manual steps</h2>
+      <ol>
+        <li>
+          Open GitHub Actions:
+          <a href="https://github.com/rmallorybpc/automatic-guacamole/actions" target="_blank" rel="noopener noreferrer">https://github.com/rmallorybpc/automatic-guacamole/actions</a>
+        </li>
+        <li>Select the workflow <strong>Refresh dashboard data</strong>.</li>
+        <li>Click <strong>Run workflow</strong> (branch <strong>main</strong>), then confirm.</li>
+        <li>Wait for the run to complete successfully (green).</li>
+        <li>
+          Confirm the run updated data by checking the logs: it either pushes a commit
+          <code>chore: refresh dashboard data</code> or reports <em>No dashboard changes to commit.</em>
+        </li>
+        <li>
+          Validate the dashboard: refresh this page and confirm the “Last updated …” timestamp changed.
+        </li>
+      </ol>
+    </div>
+
     <div class="sectionHeader">
       <h2>Product area breakdown</h2>
       <div class="legend" aria-label="Status legend">
@@ -150,7 +174,7 @@
           <select id="inProgressSelect" class="select"></select>
         </span>
         <span class="legendItem">
-          <a id="downloadInProgressBtn" class="btn" href="#" download="in_progress.json">Download in_progress.json</a>
+          <a id="downloadInProgressBtn" class="btn" href="#" role="button">Download in_progress.json</a>
         </span>
       </div>
     </div>
@@ -308,14 +332,28 @@
         }, null, 2);
       }
 
-      function updateDownloadLink(inProgressSet) {
+      let IN_PROGRESS_SET = new Set();
+
+      (function setupDownloadButton() {
         const a = document.getElementById('downloadInProgressBtn');
         if (!a) return;
-        const json = serializeInProgressJson(inProgressSet);
-        const blob = new Blob([json], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        a.href = url;
-      }
+        a.addEventListener('click', () => {
+          const json = serializeInProgressJson(IN_PROGRESS_SET);
+          const blob = new Blob([json], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+
+          // Set download attributes only in response to a user gesture.
+          a.href = url;
+          a.download = 'in_progress.json';
+
+          // Revoke/reset after navigation has started.
+          window.setTimeout(() => {
+            URL.revokeObjectURL(url);
+            a.removeAttribute('download');
+            a.href = '#';
+          }, 1000);
+        });
+      })();
 
       function renderInProgressSection(features, inProgressSet) {
         const listEl = document.getElementById('inProgressList');
@@ -348,7 +386,6 @@
             inProgressSet.add(id);
             renderInProgressSection(features, inProgressSet);
             renderProductAreas(DASHBOARD_DATA, DASHBOARD_FEATURES, inProgressSet);
-            updateDownloadLink(inProgressSet);
             selectEl.value = '';
           };
         }
@@ -388,7 +425,6 @@
             inProgressSet.delete(String(f.id));
             renderInProgressSection(features, inProgressSet);
             renderProductAreas(DASHBOARD_DATA, DASHBOARD_FEATURES, inProgressSet);
-            updateDownloadLink(inProgressSet);
           });
           rowDiv.appendChild(removeBtn);
 
@@ -504,6 +540,8 @@
             loadInProgressIds(),
           ]);
 
+          IN_PROGRESS_SET = inProgressSet;
+
           {
             const iso = data.generated_at || null;
             const rel = fmtRelativeFromNow(iso);
@@ -548,7 +586,6 @@
 
           // Never show closed issues as In Progress (but keep their IDs in the file).
           renderInProgressSection(features, inProgressSet);
-          updateDownloadLink(inProgressSet);
           renderProductAreas(data, features, inProgressSet);
 
           text(document.getElementById('rawJson'), JSON.stringify(data, null, 2));
@@ -595,6 +632,23 @@
       }
 
       document.getElementById('refreshBtn')?.addEventListener('click', refreshDashboard);
+
+      (function setupManualStepsToggle() {
+        const btn = document.getElementById('manualStepsBtn');
+        const section = document.getElementById('manualStepsSection');
+        if (!btn || !section) return;
+
+        function setOpen(open) {
+          section.hidden = !open;
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          const icon = btn.querySelector('.btnIcon');
+          if (icon) icon.textContent = open ? '▴' : '▾';
+        }
+
+        setOpen(false);
+        btn.addEventListener('click', () => setOpen(section.hidden));
+      })();
+
       load();
     </script>
   </body>

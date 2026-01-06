@@ -37,7 +37,9 @@ Alternatively, you can serve the repo root and open `/`:
 Important:
 - Don’t open the HTML files directly via `file://.../docs/issues.html` — the page fetches JSON and may appear blank.
 - Always use the HTTP URL from the server above.
-- If you are using a dev container / Codespaces, open port `8000` from VS Code’s **Ports** panel and use the forwarded URL.
+- If you are using a dev container / Codespaces:
+	- Make sure port `8000` is forwarded from VS Code’s **Ports** panel.
+	- If you see “Error forwarding port”, ensure your server is listening on `0.0.0.0` (not `127.0.0.1`).
 
 Note: the dashboard pages are static and only re-render on reload. Static servers
 like `python3 -m http.server` cannot regenerate JSON from the page.
@@ -54,6 +56,10 @@ exposes POST endpoints that run the existing generator scripts:
 - Open:
 	- `http://127.0.0.1:8000/issue-223.html`
 	- `http://127.0.0.1:8000/issues.html`
+
+Notes for dev containers / Codespaces:
+- Prefer: `GITHUB_TOKEN=... python3 scripts/dev_dashboard_server.py --bind 0.0.0.0 --port 8000`
+- The dev server serves `docs/` as the web root, so use `/issues.html` (not `/docs/issues.html`).
 
 ## Issues dashboard (all issues)
 
