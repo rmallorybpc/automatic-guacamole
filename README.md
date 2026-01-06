@@ -25,8 +25,14 @@ Serve the `docs/` folder and open either page:
 
 - `cd docs && python3 -m http.server 8000`
 - Open:
+	- `http://localhost:8000/` (redirects to the dashboard)
 	- `http://localhost:8000/issue-223.html` (preview)
 	- `http://localhost:8000/issues.html` (live)
+
+Alternatively, you can serve the repo root and open `/`:
+
+- `python3 -m http.server 8000`
+- Open `http://localhost:8000/` (redirects to `docs/`)
 
 Important:
 - Don’t open the HTML files directly via `file://.../docs/issues.html` — the page fetches JSON and may appear blank.

@@ -153,6 +153,7 @@ def main(argv: list[str] | None = None) -> int:
         httpd.refresh_timeout_s = args.refresh_timeout
         url = f"http://{args.bind}:{args.port}/"
         print("Serving dashboard at:")
+        print(f"  {url} (redirects to issues.html)")
         print(f"  {url}issues.html")
         print(f"  {url}issue-223.html")
         print("Refresh endpoints:")
