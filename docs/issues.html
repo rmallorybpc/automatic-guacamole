@@ -328,7 +328,11 @@
           const rowDiv = document.createElement('div');
           rowDiv.className = 'issueRow';
           rowDiv.appendChild(statusIcon(f.state));
-          rowDiv.appendChild(link(f.source_url, f.title || f.id));
+          {
+            const issueNo = f?.id;
+            const label = (f?.title && issueNo != null) ? `${f.title} (#${issueNo})` : (issueNo != null ? `#${issueNo}` : (f?.title || ''));
+            rowDiv.appendChild(link(f.source_url, label));
+          }
 
           const removeBtn = document.createElement('button');
           removeBtn.type = 'button';
@@ -434,7 +438,11 @@
               const rowDiv = document.createElement('div');
               rowDiv.className = 'issueRow';
               rowDiv.appendChild(statusIcon(f.state));
-              rowDiv.appendChild(link(f.source_url, f.title || f.id));
+              {
+                const issueNo = f?.id;
+                const label = (f?.title && issueNo != null) ? `${f.title} (#${issueNo})` : (issueNo != null ? `#${issueNo}` : (f?.title || ''));
+                rowDiv.appendChild(link(f.source_url, label));
+              }
               linksDiv.appendChild(rowDiv);
             }
             td.appendChild(linksDiv);
@@ -583,7 +591,11 @@
           const rowDiv = document.createElement('div');
           rowDiv.className = 'issueRow';
           rowDiv.appendChild(statusIcon(f.state));
-          rowDiv.appendChild(link(f.source_url, f.title || f.id));
+          {
+            const issueNo = f?.id;
+            const label = (f?.title && issueNo != null) ? `${f.title} (#${issueNo})` : (issueNo != null ? `#${issueNo}` : (f?.title || ''));
+            rowDiv.appendChild(link(f.source_url, label));
+          }
 
           row(tbody, [monthSpan, rowDiv]);
         }
