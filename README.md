@@ -28,6 +28,11 @@ Serve the `docs/` folder and open either page:
 	- `http://localhost:8000/issue-223.html` (preview)
 	- `http://localhost:8000/issues.html` (live)
 
+Important:
+- Don’t open the HTML files directly via `file://.../docs/issues.html` — the page fetches JSON and may appear blank.
+- Always use the HTTP URL from the server above.
+- If you are using a dev container / Codespaces, open port `8000` from VS Code’s **Ports** panel and use the forwarded URL.
+
 Note: the dashboard pages are static and only re-render on reload. Static servers
 like `python3 -m http.server` cannot regenerate JSON from the page.
 
@@ -67,6 +72,9 @@ Optional flags:
 
 This repo includes a workflow that regenerates `docs/reports/*.json` and commits
 updates back to `main` on a weekly schedule.
+
+No token is required from the person triggering the workflow: GitHub Actions
+provides a built-in workflow token automatically.
 
 - Workflow: `.github/workflows/refresh-dashboard.yml`
 - Schedule: weekly (Mon 08:00 UTC)

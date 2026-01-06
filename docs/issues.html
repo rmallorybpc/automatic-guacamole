@@ -479,9 +479,9 @@
 
         const repo = 'rmallorybpc/automatic-guacamole';
         const workflowFile = 'refresh-dashboard.yml';
-        const url = `https://github.com/${repo}/actions/workflows/${workflowFile}`;
+        const url = `https://github.com/${repo}/actions/workflows/${workflowFile}?query=branch%3Amain`;
         window.open(url, '_blank', 'noopener,noreferrer');
-        setStatus('Opened GitHub Actions (requires access)');
+        setStatus('Opened GitHub Actions — click “Run workflow”');
       }
 
       document.getElementById('refreshBtn')?.addEventListener('click', refreshDashboard);

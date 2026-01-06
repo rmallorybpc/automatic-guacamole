@@ -29,8 +29,9 @@ jobs:
 
       - name: Generate dashboards
         env:
-          # Use the workflow token for higher GitHub API rate limits.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Use the built-in workflow token (no manual secret required).
+          # This increases GitHub API rate limits vs unauthenticated requests.
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           python3 scripts/build_dashboard_from_meta_issue.py
