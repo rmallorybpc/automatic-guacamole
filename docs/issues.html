@@ -54,6 +54,16 @@
       .statusIcon { width: 14px; flex: 0 0 14px; text-align: center; font-size: 12px; line-height: 1; }
       .issueRow a { font-size: 13px; }
       .issueMonth { font-size: 13px; }
+      .select {
+        border: 1px solid #d0d7de;
+        background: #fff;
+        color: #24292f;
+        border-radius: 6px;
+        padding: 6px 10px;
+        font: inherit;
+        max-width: min(720px, 100%);
+      }
+      .inProgressEmpty { color: #555; font-size: 13px; }
     </style>
   </head>
   <body>
@@ -121,6 +131,23 @@
       </table>
     </div>
 
+    <div class="sectionHeader">
+      <h2>In Progress</h2>
+      <div class="legend" aria-label="In Progress controls">
+        <span class="meta">Loads: <code>reports/in_progress.json</code></span>
+        <span class="legendItem">
+          <label class="meta" for="inProgressSelect">Add open item:</label>
+          <select id="inProgressSelect" class="select"></select>
+        </span>
+        <span class="legendItem">
+          <a id="downloadInProgressBtn" class="btn" href="#" download="in_progress.json">Download in_progress.json</a>
+        </span>
+      </div>
+    </div>
+    <div class="card">
+      <div id="inProgressList" class="inProgressEmpty">Loading…</div>
+    </div>
+
     <h2>Monthly Issue Report</h2>
     <div class="card">
       <table id="monthlyReportTable">
@@ -149,9 +176,214 @@
 
     <script>
       const DATA_URL = 'reports/dashboard_all_issues.json';
+      const IN_PROGRESS_URL = 'reports/in_progress.json';
+
+      let DASHBOARD_DATA = null;
+      let DASHBOARD_FEATURES = [];
 
       function text(el, value) { el.textContent = value; }
       function yyyyMmDd(iso) { return iso ? String(iso).slice(0, 10) : ''; }
+
+      function featureState(f) {
+        return String(f?.state || '').toLowerCase();
+      }
+
+      async function loadInProgressIds() {
+        try {
+          const resp = await fetch(IN_PROGRESS_URL, { cache: 'no-store' });
+          if (!resp.ok) return new Set();
+          const data = await resp.json();
+          const ids = Array.isArray(data?.in_progress_ids) ? data.in_progress_ids
+            : Array.isArray(data) ? data
+            : [];
+          return new Set(ids.map(String));
+        } catch {
+          return new Set();
+        }
+      }
+
+      function serializeInProgressJson(inProgressSet) {
+        return JSON.stringify({
+          schema: 1,
+          updated_at: new Date().toISOString(),
+          in_progress_ids: Array.from(inProgressSet).sort(),
+        }, null, 2);
+      }
+
+      function updateDownloadLink(inProgressSet) {
+        const a = document.getElementById('downloadInProgressBtn');
+        if (!a) return;
+        const json = serializeInProgressJson(inProgressSet);
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        a.href = url;
+      }
+
+      function renderInProgressSection(features, inProgressSet) {
+        const listEl = document.getElementById('inProgressList');
+        const selectEl = document.getElementById('inProgressSelect');
+
+        if (selectEl) {
+          while (selectEl.firstChild) selectEl.removeChild(selectEl.firstChild);
+
+          const placeholder = document.createElement('option');
+          placeholder.value = '';
+          placeholder.textContent = 'Select an open issue…';
+          placeholder.selected = true;
+          selectEl.appendChild(placeholder);
+
+          const candidates = (Array.isArray(features) ? features : [])
+            .filter(f => featureState(f) === 'open')
+            .filter(f => !inProgressSet.has(String(f?.id || '')))
+            .sort((a, b) => String(a.title || a.id).localeCompare(String(b.title || b.id)));
+
+          for (const f of candidates) {
+            const opt = document.createElement('option');
+            opt.value = String(f.id);
+            opt.textContent = String(f.title || f.id);
+            selectEl.appendChild(opt);
+          }
+
+          selectEl.onchange = () => {
+            const id = String(selectEl.value || '');
+            if (!id) return;
+            inProgressSet.add(id);
+            renderInProgressSection(features, inProgressSet);
+            renderProductAreas(DASHBOARD_DATA, DASHBOARD_FEATURES, inProgressSet);
+            updateDownloadLink(inProgressSet);
+            selectEl.value = '';
+          };
+        }
+
+        if (!listEl) return;
+        while (listEl.firstChild) listEl.removeChild(listEl.firstChild);
+
+        const inProgress = (Array.isArray(features) ? features : [])
+          .filter(f => featureState(f) === 'open')
+          .filter(f => inProgressSet.has(String(f?.id || '')))
+          .sort((a, b) => {
+            const da = yyyyMmDd(a.date_discovered);
+            const db = yyyyMmDd(b.date_discovered);
+            if (da < db) return 1;
+            if (da > db) return -1;
+            return String(a.title || a.id).localeCompare(String(b.title || b.id));
+          });
+
+        if (!inProgress.length) {
+          listEl.textContent = 'No issues marked In Progress.';
+          return;
+        }
+
+        const frag = document.createDocumentFragment();
+        for (const f of inProgress) {
+          const rowDiv = document.createElement('div');
+          rowDiv.className = 'issueRow';
+          rowDiv.appendChild(statusIcon(f.state));
+          rowDiv.appendChild(link(f.source_url, f.title || f.id));
+          frag.appendChild(rowDiv);
+        }
+        listEl.appendChild(frag);
+      }
+
+      function renderProductAreas(data, features, inProgressSet) {
+        const table = document.getElementById('productAreaTable');
+        if (!table) return;
+
+        const thead = table.querySelector('thead');
+        const tbody = clearTbody(table);
+
+        while (thead.firstChild) thead.removeChild(thead.firstChild);
+
+        const rows = data?.product_area_breakdown?.product_areas || [];
+        const headerTr = document.createElement('tr');
+
+        function normCategory(s) {
+          return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+        }
+
+        const preferredOrder = [
+          'MS LEARN MODULE UPDATE REQUEST',
+          'DEPRECATED/POTENTIALLY OUTDATED CONTENT',
+          'SUGGESTED CONTENT UPDATES',
+          'OTHER (SUPPORT/AMBIGUOUS/PROCESS)',
+          'PLACEHOLDERS (TEMPLATE-INCOMPLETE)',
+          'GRAMMAR/SPELLING',
+        ].map(normCategory);
+
+        const rowsByNorm = new Map();
+        for (const r of rows) rowsByNorm.set(normCategory(r.name), r);
+
+        const orderedRows = [];
+        for (const k of preferredOrder) {
+          const r = rowsByNorm.get(k);
+          if (r) orderedRows.push(r);
+        }
+        for (const r of rows) {
+          const k = normCategory(r.name);
+          if (!preferredOrder.includes(k)) orderedRows.push(r);
+        }
+
+        const featuresByArea = new Map();
+        for (const f of (Array.isArray(features) ? features : [])) {
+          if (isMonthlyIssueReportFeature(f)) continue;
+          const key = normCategory(f.product_area || '');
+          if (!featuresByArea.has(key)) featuresByArea.set(key, []);
+          featuresByArea.get(key).push(f);
+        }
+
+        const dataTr = document.createElement('tr');
+
+        for (const r of orderedRows) {
+          const areaName = String(r.name ?? '');
+          const areaKey = normCategory(areaName);
+
+          const th = document.createElement('th');
+          th.textContent = areaName;
+          headerTr.appendChild(th);
+
+          const td = document.createElement('td');
+
+          const countDiv = document.createElement('div');
+          const strong = document.createElement('strong');
+          strong.textContent = String(r.count ?? 0);
+          countDiv.appendChild(strong);
+          td.appendChild(countDiv);
+
+          const areaFeaturesRaw = featuresByArea.get(areaKey) || [];
+          const areaFeatures = areaFeaturesRaw
+            .filter(f => {
+              // Open issues can be moved to In Progress (and then removed from this section).
+              if (featureState(f) === 'open' && inProgressSet?.has(String(f?.id || ''))) return false;
+              return true;
+            });
+
+          areaFeatures.sort((a, b) => {
+            const da = yyyyMmDd(a.date_discovered);
+            const db = yyyyMmDd(b.date_discovered);
+            if (da < db) return 1;
+            if (da > db) return -1;
+            return String(a.title || a.id).localeCompare(String(b.title || b.id));
+          });
+
+          if (areaFeatures.length) {
+            td.appendChild(document.createElement('hr'));
+            const linksDiv = document.createElement('div');
+            for (const f of areaFeatures) {
+              const rowDiv = document.createElement('div');
+              rowDiv.className = 'issueRow';
+              rowDiv.appendChild(statusIcon(f.state));
+              rowDiv.appendChild(link(f.source_url, f.title || f.id));
+              linksDiv.appendChild(rowDiv);
+            }
+            td.appendChild(linksDiv);
+          }
+
+          dataTr.appendChild(td);
+        }
+
+        thead.appendChild(headerTr);
+        tbody.appendChild(dataTr);
+      }
 
       function msSinceEpoch(iso) {
         if (!iso) return null;
@@ -297,9 +529,14 @@
 
       async function load() {
         try {
-          const resp = await fetch(DATA_URL, { cache: 'no-store' });
-          if (!resp.ok) throw new Error(`Failed to load ${DATA_URL}: ${resp.status}`);
-          const data = await resp.json();
+          const [data, inProgressSet] = await Promise.all([
+            (async () => {
+              const resp = await fetch(DATA_URL, { cache: 'no-store' });
+              if (!resp.ok) throw new Error(`Failed to load ${DATA_URL}: ${resp.status}`);
+              return await resp.json();
+            })(),
+            loadInProgressIds(),
+          ]);
 
           {
             const iso = data.generated_at || null;
@@ -342,97 +579,15 @@
           // Monthly report links
           renderMonthlyReport(data, features);
 
+          DASHBOARD_DATA = data;
+          DASHBOARD_FEATURES = features;
+
+          // Never show closed issues as In Progress (but keep their IDs in the file).
+          renderInProgressSection(features, inProgressSet);
+          updateDownloadLink(inProgressSet);
+
           // Product areas
-          {
-            const table = document.getElementById('productAreaTable');
-            const thead = table.querySelector('thead');
-            const tbody = clearTbody(table);
-
-            while (thead.firstChild) thead.removeChild(thead.firstChild);
-
-            const rows = data?.product_area_breakdown?.product_areas || [];
-            const headerTr = document.createElement('tr');
-
-            function normCategory(s) {
-              return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
-            }
-
-            const preferredOrder = [
-              'MS LEARN MODULE UPDATE REQUEST',
-              'DEPRECATED/POTENTIALLY OUTDATED CONTENT',
-              'SUGGESTED CONTENT UPDATES',
-              'OTHER (SUPPORT/AMBIGUOUS/PROCESS)',
-              'PLACEHOLDERS (TEMPLATE-INCOMPLETE)',
-              'GRAMMAR/SPELLING',
-            ].map(normCategory);
-
-            const rowsByNorm = new Map();
-            for (const r of rows) rowsByNorm.set(normCategory(r.name), r);
-
-            const orderedRows = [];
-            for (const k of preferredOrder) {
-              const r = rowsByNorm.get(k);
-              if (r) orderedRows.push(r);
-            }
-            for (const r of rows) {
-              const k = normCategory(r.name);
-              if (!preferredOrder.includes(k)) orderedRows.push(r);
-            }
-
-            const featuresByArea = new Map();
-            for (const f of features) {
-              if (isMonthlyIssueReportFeature(f)) continue;
-              const key = normCategory(f.product_area || '');
-              if (!featuresByArea.has(key)) featuresByArea.set(key, []);
-              featuresByArea.get(key).push(f);
-            }
-
-            const dataTr = document.createElement('tr');
-
-            for (const r of orderedRows) {
-              const areaName = String(r.name ?? '');
-              const areaKey = normCategory(areaName);
-
-              const th = document.createElement('th');
-              th.textContent = areaName;
-              headerTr.appendChild(th);
-
-              const td = document.createElement('td');
-
-              const countDiv = document.createElement('div');
-              const strong = document.createElement('strong');
-              strong.textContent = String(r.count ?? 0);
-              countDiv.appendChild(strong);
-              td.appendChild(countDiv);
-
-              const areaFeatures = featuresByArea.get(areaKey) || [];
-              areaFeatures.sort((a, b) => {
-                const da = yyyyMmDd(a.date_discovered);
-                const db = yyyyMmDd(b.date_discovered);
-                if (da < db) return 1;
-                if (da > db) return -1;
-                return String(a.title || a.id).localeCompare(String(b.title || b.id));
-              });
-
-              if (areaFeatures.length) {
-                td.appendChild(document.createElement('hr'));
-                const linksDiv = document.createElement('div');
-                for (const f of areaFeatures) {
-                  const rowDiv = document.createElement('div');
-                  rowDiv.className = 'issueRow';
-                  rowDiv.appendChild(statusIcon(f.state));
-                  rowDiv.appendChild(link(f.source_url, f.title || f.id));
-                  linksDiv.appendChild(rowDiv);
-                }
-                td.appendChild(linksDiv);
-              }
-
-              dataTr.appendChild(td);
-            }
-
-            thead.appendChild(headerTr);
-            tbody.appendChild(dataTr);
-          }
+          renderProductAreas(data, features, inProgressSet);
 
           text(document.getElementById('rawJson'), JSON.stringify(data, null, 2));
 
