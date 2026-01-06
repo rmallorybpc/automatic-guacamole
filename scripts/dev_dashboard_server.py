@@ -26,6 +26,7 @@ import json
 import os
 import subprocess
 import sys
+import urllib.parse
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler
 from socketserver import ThreadingTCPServer
@@ -80,6 +81,61 @@ def _run_script(script_rel: str, timeout_s: int) -> Dict[str, Any]:
 
 class DashboardDevHandler(SimpleHTTPRequestHandler):
     # Python's SimpleHTTPRequestHandler supports the `directory` kwarg.
+
+    # Codespaces/forwarded-port proxies can behave poorly if Content-Type is
+    # missing or falls back to application/octet-stream. Be explicit for the
+    # file types we serve.
+    extensions_map = {
+        **getattr(SimpleHTTPRequestHandler, "extensions_map", {}),
+        ".html": "text/html; charset=utf-8",
+        ".htm": "text/html; charset=utf-8",
+        ".css": "text/css; charset=utf-8",
+        ".js": "text/javascript; charset=utf-8",
+        ".mjs": "text/javascript; charset=utf-8",
+        ".json": "application/json; charset=utf-8",
+        ".svg": "image/svg+xml",
+        ".txt": "text/plain; charset=utf-8",
+    }
+
+    def guess_type(self, path: str) -> str:  # noqa: N802 (stdlib naming)
+        # Ensure common web assets always get a sensible Content-Type.
+        p = (path or "").lower()
+        for ext, ctype in self.extensions_map.items():
+            if ext and p.endswith(ext):
+                return ctype
+        return super().guess_type(path)
+
+    def _maybe_redirect_docs_prefix(self) -> bool:
+        """Redirect `/docs/...` to `/<...>`.
+
+        The dev server serves `docs/` as the web root. In Codespaces it's easy to
+        paste a URL like `/docs/issues.html`; this would otherwise 404.
+        """
+
+        parts = urllib.parse.urlsplit(self.path)
+        path = parts.path or "/"
+        if path == "/docs" or path == "/docs/":
+            target_path = "/"
+        elif path.startswith("/docs/"):
+            target_path = "/" + path[len("/docs/") :]
+        else:
+            return False
+
+        target = urllib.parse.urlunsplit(("", "", target_path, parts.query, parts.fragment))
+        self.send_response(HTTPStatus.FOUND)
+        self.send_header("Location", target)
+        self.end_headers()
+        return True
+
+    def do_GET(self) -> None:  # noqa: N802 (stdlib naming)
+        if self._maybe_redirect_docs_prefix():
+            return
+        super().do_GET()
+
+    def do_HEAD(self) -> None:  # noqa: N802 (stdlib naming)
+        if self._maybe_redirect_docs_prefix():
+            return
+        super().do_HEAD()
 
     def _send_json(self, status: int, payload: Dict[str, Any]) -> None:
         body = json.dumps(payload, indent=2, sort_keys=True).encode("utf-8")

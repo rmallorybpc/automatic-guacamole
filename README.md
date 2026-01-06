@@ -59,7 +59,10 @@ exposes POST endpoints that run the existing generator scripts:
 
 Notes for dev containers / Codespaces:
 - Prefer: `GITHUB_TOKEN=... python3 scripts/dev_dashboard_server.py --bind 0.0.0.0 --port 8000`
-- The dev server serves `docs/` as the web root, so use `/issues.html` (not `/docs/issues.html`).
+- Preferred link (forwarded port): https://YOUR-CODESPACE-8000.app.github.dev/issues.html
+	- Tip: VS Code → **Ports** → port `8000` → copy the forwarded URL, then append `/issues.html`.
+- The dev server serves `docs/` as the web root, so the canonical path is `/issues.html`.
+	- If you accidentally use `/docs/issues.html`, the dev server will redirect it.
 
 ## Issues dashboard (all issues)
 
