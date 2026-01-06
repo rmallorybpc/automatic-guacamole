@@ -84,10 +84,10 @@
       </div>
       <div>
         <div class="toolbar" aria-label="Dashboard refresh controls">
-          <button id="refreshBtn" type="button" class="btn">
+          <a id="refreshBtn" class="btn" href="https://github.com/rmallorybpc/automatic-guacamole/actions/workflows/refresh-dashboard.yml?query=branch%3Amain" target="_blank" rel="noopener noreferrer">
             <span class="btnIcon" aria-hidden="true">⟳</span>
             <span>Refresh dashboard</span>
-          </button>
+          </a>
           <button id="manualStepsBtn" type="button" class="btn" aria-expanded="false" aria-controls="manualStepsSection">
             <span class="btnIcon" aria-hidden="true">▾</span>
             <span>Manual steps</span>
@@ -597,12 +597,20 @@
         }
       }
 
-      async function refreshDashboard() {
+      async function refreshDashboard(e) {
+        // When running locally via `scripts/dev_dashboard_server.py`, refresh in-place.
+        // On static hosting, the refresh button is a normal link that opens GitHub Actions in a new tab.
+        const isLocalDev = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+        if (!isLocalDev) return;
+        if (e?.preventDefault) e.preventDefault();
+
         const btn = document.getElementById('refreshBtn');
+        if (btn?.hasAttribute?.('disabled')) return;
         const status = document.getElementById('refreshStatus');
         const setStatus = (s) => { if (status) text(status, s); };
 
-        if (btn) btn.disabled = true;
+        if (btn?.setAttribute) btn.setAttribute('disabled', '');
+        if (btn?.setAttribute) btn.setAttribute('aria-disabled', 'true');
         setStatus('Refreshing…');
 
         // If served via `scripts/dev_dashboard_server.py`, we can refresh in-place.
@@ -621,13 +629,12 @@
         } catch (e) {
           // Fall back to opening GitHub Actions when running from static hosting.
         } finally {
-          if (btn) btn.disabled = false;
+          if (btn?.removeAttribute) btn.removeAttribute('disabled');
+          if (btn?.removeAttribute) btn.removeAttribute('aria-disabled');
         }
 
-        const repo = 'rmallorybpc/automatic-guacamole';
-        const workflowFile = 'refresh-dashboard.yml';
-        const url = `https://github.com/${repo}/actions/workflows/${workflowFile}?query=branch%3Amain`;
-        window.open(url, '_blank', 'noopener,noreferrer');
+        // If local refresh failed, fall back to GitHub Actions.
+        if (btn?.href) window.open(btn.href, '_blank', 'noopener,noreferrer');
         setStatus('Opened GitHub Actions — click “Run workflow”');
       }
 
