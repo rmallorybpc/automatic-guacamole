@@ -64,6 +64,18 @@
         max-width: min(720px, 100%);
       }
       .inProgressEmpty { color: #555; font-size: 13px; }
+      .miniBtn {
+        border: 1px solid #d0d7de;
+        background: #f6f8fa;
+        color: #24292f;
+        border-radius: 999px;
+        padding: 4px 10px;
+        font: inherit;
+        cursor: pointer;
+        line-height: 1;
+      }
+      .miniBtn:hover { background: #eef1f4; }
+      .miniBtn:active { background: #e7ebef; }
     </style>
   </head>
   <body>
@@ -280,6 +292,20 @@
           rowDiv.className = 'issueRow';
           rowDiv.appendChild(statusIcon(f.state));
           rowDiv.appendChild(link(f.source_url, f.title || f.id));
+
+          const removeBtn = document.createElement('button');
+          removeBtn.type = 'button';
+          removeBtn.className = 'miniBtn';
+          removeBtn.textContent = 'Remove';
+          removeBtn.setAttribute('aria-label', `Remove from In Progress: ${String(f.title || f.id)}`);
+          removeBtn.addEventListener('click', () => {
+            inProgressSet.delete(String(f.id));
+            renderInProgressSection(features, inProgressSet);
+            renderProductAreas(DASHBOARD_DATA, DASHBOARD_FEATURES, inProgressSet);
+            updateDownloadLink(inProgressSet);
+          });
+          rowDiv.appendChild(removeBtn);
+
           frag.appendChild(rowDiv);
         }
         listEl.appendChild(frag);
