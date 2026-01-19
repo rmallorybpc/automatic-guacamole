@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-13T16:39:04+00:00",
+  "generated_at": "2026-01-19T08:38:22+00:00",
   "summary": {
     "total_features": 20
   },
@@ -285,32 +285,32 @@
     {
       "id": "microsoft_learn_issue_220",
       "title": "MS Learn Module Update Request: [REPLACE_WITH_MODULE_TITLE]",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Placeholders (Template-Incomplete)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/220",
       "date_discovered": "2025-11-10T01:52:43Z",
-      "closed_at": null
+      "closed_at": "2026-01-13T16:57:49Z"
     },
     {
       "id": "microsoft_learn_issue_221",
       "title": "MS Learn Module Update Request: [REPLACE_WITH_MODULE_TITLE]",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Placeholders (Template-Incomplete)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/221",
       "date_discovered": "2025-11-10T01:52:46Z",
-      "closed_at": null
+      "closed_at": "2026-01-13T16:57:51Z"
     },
     {
       "id": "microsoft_learn_issue_222",
       "title": "MS Learn Module Update Request: [REPLACE_WITH_MODULE_TITLE]",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Placeholders (Template-Incomplete)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/222",
       "date_discovered": "2025-11-10T01:52:47Z",
-      "closed_at": null
+      "closed_at": "2026-01-13T16:57:53Z"
     }
   ],
   "content_checks": [],
