@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-21T15:31:28+00:00",
+  "generated_at": "2026-01-26T08:38:01+00:00",
   "summary": {
     "total_features": 122
   },
@@ -458,122 +458,122 @@
     {
       "id": "microsoft_learn_issue_19",
       "title": "Dependabot now alerts for vulnerable GitHub Actions",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/19",
       "date_discovered": "2022-08-17T18:02:45Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T15:52:22Z"
     },
     {
       "id": "microsoft_learn_issue_20",
       "title": "GitHub Actions runner updates",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Deprecated/Potentially Outdated Content",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/20",
       "date_discovered": "2022-08-17T18:04:43Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T15:52:37Z"
     },
     {
       "id": "microsoft_learn_issue_21",
       "title": "GitHub Actions: Re-run jobs with debug logging",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/21",
       "date_discovered": "2022-08-17T18:07:55Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T15:55:15Z"
     },
     {
       "id": "microsoft_learn_issue_22",
       "title": "GitHub Actions: job summaries",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/22",
       "date_discovered": "2022-08-17T18:09:24Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T15:55:35Z"
     },
     {
       "id": "microsoft_learn_issue_23",
       "title": "GitHub Actions: Save time with partial re-runs in GitHub Actions",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/23",
       "date_discovered": "2022-08-17T18:13:01Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T15:55:46Z"
     },
     {
       "id": "microsoft_learn_issue_24",
       "title": "Dependency graph now supports GitHub Actions",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/24",
       "date_discovered": "2022-08-17T18:15:08Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T15:55:56Z"
     },
     {
       "id": "microsoft_learn_issue_25",
       "title": "\"new workflow\" based on analysis of repo content",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/25",
       "date_discovered": "2022-08-17T18:17:22Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T15:56:06Z"
     },
     {
       "id": "microsoft_learn_issue_26",
       "title": "Safeguard your containers with new container signing capability in GitHub Actions",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/26",
       "date_discovered": "2022-08-17T18:18:31Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T15:56:25Z"
     },
     {
       "id": "microsoft_learn_issue_27",
       "title": "Secure deployments with OpenID Connect & GitHub Actions",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/27",
       "date_discovered": "2022-08-17T18:19:40Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T18:28:13Z"
     },
     {
       "id": "microsoft_learn_issue_28",
       "title": "New Module: GitHub Actions workflows",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/28",
       "date_discovered": "2022-08-17T18:38:47Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T19:16:58Z"
     },
     {
       "id": "microsoft_learn_issue_35",
       "title": "Deep dive review into lower performing modules",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Suggested Content Updates",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/35",
       "date_discovered": "2022-09-19T17:47:21Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T19:17:17Z"
     },
     {
       "id": "microsoft_learn_issue_36",
       "title": "New modules for Octoshift / GitHub Enterprise Importer",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Placeholders (Template-Incomplete)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/36",
       "date_discovered": "2022-09-20T19:15:19Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T19:17:37Z"
     },
     {
       "id": "microsoft_learn_issue_37",
@@ -588,32 +588,32 @@
     {
       "id": "microsoft_learn_issue_38",
       "title": "New Module: Projects (Memex)",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Placeholders (Template-Incomplete)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/38",
       "date_discovered": "2022-09-20T19:38:23Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T19:36:52Z"
     },
     {
       "id": "microsoft_learn_issue_39",
       "title": "Module Update: Build continuous integration (CI) workflows by using GitHub Actions",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Other (Support/Ambiguous/Process)",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/39",
       "date_discovered": "2022-09-20T20:43:13Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T19:19:16Z"
     },
     {
       "id": "microsoft_learn_issue_40",
       "title": "Content Update: Update information on configuring Dependabot security updates to match current behavior",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Suggested Content Updates",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/40",
       "date_discovered": "2022-09-20T21:05:25Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T19:19:27Z"
     },
     {
       "id": "microsoft_learn_issue_51",
@@ -628,32 +628,32 @@
     {
       "id": "microsoft_learn_issue_56",
       "title": "MS Learn Module Update Request:  github-actions-ci",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/56",
       "date_discovered": "2023-01-04T22:02:01Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T19:26:30Z"
     },
     {
       "id": "microsoft_learn_issue_57",
       "title": "MS Learn Module Update Request: github-actions-ci",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "MS Learn Module Update Request",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/57",
       "date_discovered": "2023-01-04T22:03:28Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T19:34:33Z"
     },
     {
       "id": "microsoft_learn_issue_60",
       "title": "Typo in the Code Scanning with GitHub CodeQL module",
-      "state": "open",
+      "state": "closed",
       "source_type": "issue",
       "product_area": "Grammar/Spelling",
       "source_url": "https://github.com/githubpartners/microsoft-learn/issues/60",
       "date_discovered": "2023-02-03T19:53:44Z",
-      "closed_at": null
+      "closed_at": "2026-01-21T19:37:52Z"
     },
     {
       "id": "microsoft_learn_issue_118",
